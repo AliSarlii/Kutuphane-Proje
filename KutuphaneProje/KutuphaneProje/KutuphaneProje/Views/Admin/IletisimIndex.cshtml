@@ -1,0 +1,37 @@
+﻿@model IEnumerable<KutuphaneProje.Models.Iletisim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="mt-4 text-center">Mesaj Listesi</h1>
+<br />
+<div class="container body-content">
+    <div class="accordion" id="accordionExample">
+        @if (Model.Count() < 1)
+    {
+        <p class="text-center"> Mesaj Kutusu Boş</p>
+    }
+        @foreach (var item in Model)
+        {
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading@(item.Id)">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@(item.Id)" aria-expanded="false" aria-controls="collapse@(item.Id)">
+                        @Html.DisplayFor(modelItem => item.AdSoyad)
+                    </button>
+                </h2>
+                <div id="collapse@(item.Id)" class="accordion-collapse collapse" aria-labelledby="heading@(item.Id)" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>İletişim Bilgisi : </b>@Html.DisplayFor(modelItem => item.Eposta)</li>
+                            <li class="list-group-item"><b>Mesaj : </b>@Html.DisplayFor(modelItem => item.Mesaj)</li>
+                        </ul>
+                        &nbsp;&nbsp;@Html.ActionLink("Mesajı Sil", "IletisimDelete", new { id = item.Id }, new { @class = "btn btn-outline-danger btn-sm" })
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

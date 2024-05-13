@@ -1,0 +1,57 @@
+﻿@model KutuphaneProje.Models.Kitap
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="mt-4 text-center">Kitabı Sil</h1>
+
+<p style="font-size:20px; font-weight:500;">Kitabı Silmek İstediğinizden Emin misiniz?</p>
+<br />
+<div>
+    <div style="display:flex; max-width:800px; flex-wrap:wrap; justify-content:space-around; align-items:center; align-content:center; margin:auto;">
+        <div style="width:300px;">
+            <br />
+            @if (Model.KitapDoluBos == true)
+            {
+                <b style="color:green;"> Kitap Boş</b>
+            }
+            else
+            {
+                <b style="color:red;"> Kitap Dolu</b>
+            }
+            <br />
+            <p><b>Kitap Adı : </b>@Html.DisplayFor(model => model.KitapAd)</p>
+            <br />
+            <p><b>Kitap Yazarı : </b>@Html.DisplayFor(model => model.KitapYazar)</p>
+            <br />
+            <p><b>Kitap Turu : </b>@Html.DisplayFor(model => model.Kitap_Turu.KitapTuru)</p>
+            <br />
+            <p><b>Kitap Konusu : </b>@Html.DisplayFor(model => model.Kitap_Konusu.KitapKonusu)</p>
+            <br />
+            <p><b>Kitap Yılı : </b>@Html.DisplayFor(model => model.KitapYıl)</p>
+            <br />
+            <p><b>Kitap Sayfası : </b>@Html.DisplayFor(model => model.KitapSayfa)</p>
+            <br />
+            <p><b>Kitap Dili : </b>@Html.DisplayFor(model => model.Kitap_Dili.KitapDili)</p>
+            <br />
+            <br />
+        </div>
+        <div style="margin:auto; ">
+            <div style="width:200px; height:300px; background-image:url(@Html.DisplayFor(model => model.KitapFoto)); background-size:cover;"> </div>
+            <br />
+            <br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                
+                    <button type="submit" class="btn btn-outline-danger" id="@Model.Id">Kitabı Sil</button>
+                    <a href="/Admin/KitapIndex" class="btn btn-outline-primary">Listeye Geri Dön</a>
+                
+            }
+        </div>
+    </div>
+
+  
+</div>

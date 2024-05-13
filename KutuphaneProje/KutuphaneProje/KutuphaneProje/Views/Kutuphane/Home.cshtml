@@ -1,0 +1,80 @@
+﻿@model IEnumerable<KutuphaneProje.Models.KitapOneriler>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+
+<style>
+    @*sayfa sıfırlamaları*@
+    html, body {
+        width: calc(100%-56px);
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    @*arkaplan ekleme ve arkapılanı yerleştirme*@
+    body {
+        background-image: url("../../BackgroundImages/Background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment:fixed;
+    }
+
+</style>
+    @*hoşgeldiniz yazısını ortalama ve yerleştirme ayarları*@
+<div class="container body-content">
+    <div style="max-width:800px; margin:auto; height:500px;">
+        <div style="margin: auto; height: 500px; text-align: center; ">
+            <h1 style="font-size: 140px; letter-spacing: 6px; word-spacing: 5px; font-family: kutuphane; text-shadow: 1px 1px 10px black; perspective: 800px; color: white; margin-top:200px; ">Hos Geldiniz</h1>
+        </div>
+    </div>
+
+    <div>
+        <p style="font-family:'Times New Roman', Times, serif; letter-spacing:1px;word-spacing:3px; font-size:40px; text-align:center; color:wheat;">Haftanın önerileri</p>
+        <br />
+
+        <div class="container body-content">
+            <div class="row row-cols-3 row-cols-md-4 row-cols-sm-1 g-4 ">
+                @foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <img src="@Html.DisplayFor(modelItem => item.Kitap.KitapFoto)" class="card-img-top" alt="Kitap Kapak Fotoğrafı">
+                            <div class="card-body">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-heading@(item.Id)">
+                                            <button style="outline:5px solid white;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse@(item.Id)" aria-expanded="false" aria-controls="flush-collapse@(item.Id)">
+                                                @Html.DisplayFor(modelItem => item.Kitap.KitapAd)
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapse@(item.Id)" class="accordion-collapse collapse" aria-labelledby="flush-heading@(item.Id)" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body" style="padding:0px;">
+                                                <br />
+                                                @if (item.Kitap.KitapDoluBos == true)
+                                                {<div class="alert alert-success" role="alert">Kitap Boş</div>}
+                                                else
+                                                { <div class="alert alert-danger" role="alert">Kitap Dolu</div>}
+
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"><b>Kitap Yazarı :</b>@Html.DisplayFor(modelItem => item.Kitap.KitapYazar)</li>
+                                                    <li class="list-group-item"><b>Kitap Türü :</b>@Html.DisplayFor(modelItem => item.Kitap.Kitap_Turu.KitapTuru)</li>
+                                                    <li class="list-group-item"><b>Kitap Konusu :</b>@Html.DisplayFor(modelItem => item.Kitap.Kitap_Konusu.KitapKonusu)</li>
+                                                    <li class="list-group-item"><b>Kitap Yılı :</b>@Html.DisplayFor(modelItem => item.Kitap.KitapYıl)</li>
+                                                    <li class="list-group-item"><b>Kitap Sayfa Sayısı :</b>@Html.DisplayFor(modelItem => item.Kitap.KitapSayfa)</li>
+                                                    <li class="list-group-item "><b>Kitabın Dili :</b>@Html.DisplayFor(modelItem => item.Kitap.Kitap_Dili.KitapDili)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        <br />
+        <br />
+        </div>
+    </div>
+</div>
+

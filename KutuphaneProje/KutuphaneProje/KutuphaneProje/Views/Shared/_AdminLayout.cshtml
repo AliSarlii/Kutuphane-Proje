@@ -1,0 +1,100 @@
+﻿@{
+    if (Session["adminid"] == null && Session["eposta"] == null)
+    {
+        Response.Redirect("/Admin/Giris/");
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="~/Content/styles.css" />
+    <script src="https://kit.fontawesome.com/2765b9c277.js" crossorigin="anonymous"></script>
+    <style>
+        @@font-face {
+            font-family: "kutuphane";
+            src: url("../../Fonts/walkthemoonspaced.ttf") format('truetype');
+        }
+        @@font-face {
+            font-family: "kutuphane2";
+            src: url("../../Fonts/Signatra.ttf") format('truetype');
+        }
+        @@font-face {
+           font-family: "kutuphane3";
+            src: url("../../Fonts/Empire.ttf") format('truetype');
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex" id="wrapper" >
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light"><a href="/Admin/Home" style="text-decoration:none; color:black; font-weight:500; font-size:25px;"><i class="fa-solid fa-house-user"></i>&nbsp;Admin Paneli</a></div>
+            <div class="list-group list-group-flush">
+                <p style="margin-bottom:0px;">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" style="user-select: none;">Kitap İşlemleri  &emsp; &emsp; &emsp; &emsp;<i class="fa-solid fa-chevron-down"></i></a>
+                </p>
+                <div style="min-height: 0px;">
+                    <div class="collapse " id="collapseWidthExample">
+                        <div class="card card-body" style="width: 240px; border-radius:0px; border:0px 0px 1px 0px;" >
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Admin/KitapCreate"><i class="fa-solid fa-chevron-right"></i>&nbsp; Kitap Ekle</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Admin/KitapIndex"><i class="fa-solid fa-chevron-right"></i>&nbsp; Kitapları Düzenle</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Admin/KitapKonuIndex"><i class="fa-solid fa-chevron-right"></i>&nbsp; Kitap Konusunu Düzenle</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Admin/KitapTurIndex"><i class="fa-solid fa-chevron-right"></i>&nbsp; Kitap Türlerini Düzenle</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Admin/KitapDilIndex"><i class="fa-solid fa-chevron-right"></i>&nbsp; Kitap Dillerini Düzenle</a>
+
+                        </div>
+                    </div>
+                </div>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Admin/OneCikarilanIndex"><i class="fa-solid fa-chevron-right"></i>&nbsp; Öne Çıkarılanları Düzenle</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/Admin/AdminBilgi"><i class="fa-solid fa-chevron-right"></i>&nbsp; Admin Bilgileri</a>
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="" id="sidebarToggle" style="border:none; font-size:30px;"><i class="fa-solid fa-bars"></i></button>
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li><a href="/Admin/IletisimIndex/" style="font-size:20px; text-decoration:none;"><i class="fa-regular fa-envelope"></i></a>&emsp;&emsp;</li>
+                        <li><a href="/Admin/Cikis/" style="font-size:20px; text-decoration:none;"><i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <div id="content">
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+
+            const sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    document.body.classList.toggle('sb-sidenav-toggled');
+                    localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

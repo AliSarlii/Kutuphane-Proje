@@ -1,0 +1,100 @@
+﻿
+@model KutuphaneProje.Models.Kitap
+
+@{
+    ViewBag.Title = "Kitap Düzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h1 class="mt-4 text-center">Kitabı Düzenle</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="" style="display: block; margin:auto; max-width: 800px; height: max-content; padding:20px;">
+
+        <div style="display: block; margin: auto;">
+
+            <div style="display: block; margin: auto; max-width:700px;">
+                @Html.EditorFor(model => model.KitapAd, new { htmlAttributes = new { @class = "form-control", @style = "margin: auto; max-width:600px;", @placeholder = "Kitabın Adını girin", @autocomplete = "off" } })
+            </div>
+        </div>
+        <br />
+        <div style="display: block; margin: auto;">
+
+            <div style="display: block; margin: auto; max-width:700px;">
+                @Html.EditorFor(model => model.KitapYazar, new { htmlAttributes = new { @class = "form-control", @style = "margin: auto;max-width:600px;", @placeholder = "Kitap Yazarını girin", @autocomplete = "off" } })
+            </div>
+        </div>
+        <br />
+
+        <div style="margin: auto;">
+            <div style="display: block; margin: auto; max-width:700px;">
+                @Html.DropDownList("KitapTur", null, htmlAttributes: new { @class = "form-select", @style = "margin: auto;max-width:600px;", @placeholder = "Kitap Türünü Seçin", @autocomplete = "off" })
+            </div>
+        </div>
+        <br />
+        <div style="margin: auto;">
+            <div style="display: block; margin: auto; max-width:700px;">
+
+                @Html.DropDownList("KitapKonu", null, htmlAttributes: new { @class = "form-select", @style = "margin: auto; max-width:600px;", @placeholder = "Kitap Türünü Seçin", @autocomplete = "off" })
+            </div>
+        </div>
+        <br />
+        <div style="margin: auto;">
+            <div style="display: block; margin: auto; max-width:700px;">
+
+                @Html.DropDownList("KitapDil", null, htmlAttributes: new { @class = "form-select", @style = "margin: auto;max-width:600px; ", @placeholder = "Kitap Türünü Seçin", @autocomplete = "off" })
+            </div>
+        </div>
+        <br />
+        <div style=" display: block; margin: auto;">
+
+            <div style="display: block; margin: auto; max-width:700px;">
+                @Html.EditorFor(model => model.KitapYıl, new { htmlAttributes = new { @class = "form-control", @style = "margin: auto; max-width:600px;", @placeholder = "Kitabın Yılını girin", @autocomplete = "off" } })
+            </div>
+        </div>
+        <br />
+        <div style=" display: block; margin: auto;">
+
+            <div style="display: block; margin:auto; max-width:700px;">
+                @Html.EditorFor(model => model.KitapSayfa, new { htmlAttributes = new { @class = "form-control", @style = "margin: auto; max-width:600px;", @placeholder = "Kitabın Sayfa Sayısını girin", @autocomplete = "off" } })
+            </div>
+        </div>
+        <br />
+        <div style=" display: block; margin: auto;">
+
+            <div style="display: block; margin:auto; max-width:700px;">
+                @Html.EditorFor(model => model.KitapFoto, new { htmlAttributes = new { @class = "form-control", @style = "margin: auto; max-width:600px;", @placeholder = "Kitap fotoğafının linkini girin", @autocomplete = "off" } })
+            </div>
+        </div>
+        <br />
+        <div style=" display: block; margin: auto;">
+
+            <div style="display: flex; margin:auto; max-width:700px; flex-wrap:wrap; justify-content:space-evenly; align-items:center; align-content:center; font-size:17px;">
+                <div>
+                    <label>
+                        <span>Kitap Boş</span>
+                        @Html.RadioButtonFor(m => m.KitapDoluBos, true)
+                    </label>
+                </div>
+                <label >
+                    <span>Kitap Dolu</span>
+                    @Html.RadioButtonFor(m => m.KitapDoluBos, false)
+                </label>
+            </div>
+        </div>
+        <br />
+        <div style="margin: auto;">
+            <div style="display: block; margin:auto; max-width:700px;">
+                <button type="submit" class="btn btn-success" style="margin:auto; display:block;">Kitabı kaydet</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

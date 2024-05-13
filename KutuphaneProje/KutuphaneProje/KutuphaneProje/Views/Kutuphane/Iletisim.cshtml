@@ -1,0 +1,77 @@
+﻿@model KutuphaneProje.Models.Iletisim
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mt-4 text-center" style="color:black;">İletişim</h1>
+
+<section class="mb-4">
+
+    <style>
+        body {
+            @*arkaplan resim ekleme ve ayarlamaları*@
+            background-image: url("../../BackgroundImages/Background.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    @*bootstrap hazır şablon ile iletişim formu*@
+    <div style="max-width: 1200px; height: max-content; border-radius: 20px; margin: auto; padding: 40px 0px; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); background-clip: border-box !important; perspective: 800px; color:white;">
+        <p class="text-center w-responsive mx-auto mb-5">
+            Sormak istediğiniz bir şey var mı? Lütfen doğrudan bizimle iletişime geçmekten çekinmeyin. Ekibimiz size yardımcı olmak için birkaç saat içinde size geri dönecektir.
+        </p>
+        <div class="row">
+            <div class="col-md-7 mb-md-0 mb-5">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="md-form mb-0" style="margin: auto;">
+                            <label for="name" style="display: block; text-align: center; padding-top: 10px;">İsim Soyisim</label>
+                            @Html.EditorFor(model => model.AdSoyad, new { htmlAttributes = new { @class = "form-control", style = "margin:auto; autocomplete:off", name = "name", type = "text" } })
+
+                        </div>
+
+                        <div class="md-form mb-0" style="margin:auto">
+                            <label for="email" style="display: block; text-align: center; padding-top: 10px;">Email</label>
+                            @Html.EditorFor(model => model.Eposta, new { htmlAttributes = new { @class = "form-control", style = "margin:auto; autocomplete:off", name = "email", type = "email" } })
+                        </div>
+
+                        <div class="md-form mb-0" style="margin:auto">
+                            <label for="message" style="display:block; text-align:center; padding-top:10px;">Mesaj</label>
+                            @Html.TextAreaFor(model => model.Mesaj, new { @class = "form-control md-textarea", style = "margin:auto; overflow:auto; resize:none max-length:199;", autocomplete = "off" , name="message"})
+                        </div>
+                    </div>
+
+                    <div class="text-center text-md-left ">
+                        <div class="d-grid gap-2 col-2 mx-auto" style="margin-top:10px;">
+                            <button class="btn btn-success" type="submit">Gönder</button>
+                        </div>
+
+                    </div>
+                }
+                    <div class="status"></div>
+                </div>
+            <div class="col-md-3 text-center">
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <i class="fas fa-map-marker-alt fa-2x"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a tincidunt arcu.</p>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-phone mt-4 fa-2x"></i>
+                        <p>+90 0555 555 55 55</p>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-envelope mt-4 fa-2x"></i>
+                        <p>deneme@deneme.com</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

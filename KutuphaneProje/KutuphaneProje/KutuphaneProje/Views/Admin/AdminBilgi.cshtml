@@ -1,0 +1,44 @@
+﻿@model IEnumerable<KutuphaneProje.Models.Admin>
+@{
+    ViewBag.Title = "AdminBilgi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h1 class="mt-4 text-center">Admin Bilgileri</h1>
+<br>
+
+
+<div class="container body-content">
+    <div style="max-width:600px; margin:auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">eposta</th>
+                    <th scope="col">şifre</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.Eposta</td>
+                        <td class="sifreler k">
+                            @{  var a = "*";
+                                for (var i = 1; i < item.Sifre.Length; i++)
+                                {
+                                    a = a + "*";
+                                }
+                            }
+                            @(a)
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+</div>
+
+
+

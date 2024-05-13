@@ -1,0 +1,49 @@
+﻿@model KutuphaneProje.Models.Kitap_Turu
+@{
+    ViewBag.Title = "KitapKonuIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="mt-4 text-center">Kitap Türü</h1>
+<br>
+
+<div class="container body-content">
+    <div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:flex-start; align-content:center; ">
+        <div style="min-width:max-content;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Kitap Türü</th>
+                        <th scope="col">#</th>
+                    </tr>
+                </thead>
+                @foreach (var item in ViewBag.Veri)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@(item.KitapTuru)</td>
+                            <td> @Html.ActionLink("Sil", "KitapTurDelete", new { id = item.Id }, new { @class = "btn btn-outline-warning" })</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+
+        <div>
+
+            <form method="post" action="/Admin/KitapTurIndex/">
+                @Html.AntiForgeryToken()
+                <div style="display: block; margin: auto;">
+
+                    <div style="display: block; margin: auto; max-width:700px;">
+                        @Html.EditorFor(m => m.KitapTuru, new { htmlAttributes = new { @class = "form-control", @style = "margin: auto; max-width:400px;", @placeholder = "Kitabın Türünü girin", @autocomplete = "off" } })
+                    </div>
+                    <br />
+                    <div style="display: block; margin:auto; max-width:700px;">
+                        <button type="submit" class="btn btn-success" style="margin:auto; display:block;">Kitap Türü Ekle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

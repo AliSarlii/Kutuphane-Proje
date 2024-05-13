@@ -1,0 +1,66 @@
+﻿@model IEnumerable<KutuphaneProje.Models.Kitap>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .accordion-button:focus {
+        color: black;
+        background-color: white;
+    }
+</style>
+
+<h1 class="mt-4 text-center">Kitap Listesi</h1>
+<br>
+
+<div class="container body-content">
+    <div class="row row-cols-3 row-cols-md-4 row-cols-sm-1 g-4 ">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="@Html.DisplayFor(modelItem => item.KitapFoto)" class="card-img-top" alt="Kitap Kapak Fotoğrafı">
+                    <div class="card-body">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-heading@(item.Id)">
+                                    <button style="outline:5px solid white;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse@(item.Id)" aria-expanded="false" aria-controls="flush-collapse@(item.Id)">
+                                        @Html.DisplayFor(modelItem => item.KitapAd)
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse@(item.Id)" class="accordion-collapse collapse" aria-labelledby="flush-heading@(item.Id)" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body" style="padding:0px;">
+                                        <br />
+                                        @if (item.KitapDoluBos == true)
+                                        {<div class="alert alert-success" role="alert">Kitap Boş</div>}
+                                        else
+                                        { <div class="alert alert-danger" role="alert">Kitap Dolu</div>}
+
+                                        <ul class="list-group list-group-flush">
+
+                                            <li class="list-group-item"><b>Kitap Yazarı :</b>@Html.DisplayFor(modelItem => item.KitapYazar)</li>
+                                            <li class="list-group-item"><b>Kitap Türü :</b>@Html.DisplayFor(modelItem => item.Kitap_Turu.KitapTuru)</li>
+                                            <li class="list-group-item"><b>Kitap Konusu :</b>@Html.DisplayFor(modelItem => item.Kitap_Konusu.KitapKonusu)</li>
+                                            <li class="list-group-item"><b>Kitap Yılı :</b>@Html.DisplayFor(modelItem => item.KitapYıl)</li>
+                                            <li class="list-group-item"><b>Kitap Sayfa Sayısı :</b>@Html.DisplayFor(modelItem => item.KitapSayfa)</li>
+                                            <li class="list-group-item "><b>Kitabın Dili :</b>@Html.DisplayFor(modelItem => item.Kitap_Dili.KitapDili)</li>
+                                        </ul>
+                                        @Html.ActionLink("Kitabı Düzenle", "KitapEdit", new { id = item.Id }, new { @class = "btn btn-outline-warning" })&emsp;
+                                        @Html.ActionLink("Kitabı sil", "KitapDelete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })&emsp;
+                                        <br />
+                                        <br />
+                                        @Html.ActionLink("Önerilere Ekle", "OneCikarilanEkle", new { id = item.Id }, new { @class = "btn btn-outline-primary m-auto" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

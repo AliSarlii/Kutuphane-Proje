@@ -1,0 +1,55 @@
+﻿@model KutuphaneProje.Models.Admin
+@{
+    ViewBag.Title = "Giris";
+}
+<style>
+    body {
+        background-image: url("../../BackgroundImages/Background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .admin {
+        perspective: 800px;
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        width: 400px;
+        height: max-content;
+        margin: auto;
+        text-align: center;
+        box-shadow: 0 0 10px #332017;
+    }
+    
+</style>
+<div>
+    <br />
+    <br />
+    <div class="admin">
+        <br />
+        @if (ViewBag.yanlis == true)
+            {
+                <div class=" d-flex align-items-center" role="alert">
+                    <div class="alert alert-danger col-10" style="margin:auto;">
+                        Yanlış kullanıcı adı veya şifre
+                    </div>
+                </div>
+            }
+        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <p style="text-align:center; font-family:kutuphane; font-size:45px; color:wheat;">Admin Giris</p>
+            <br />
+            @Html.EditorFor(model => model.Eposta, new { htmlAttributes = new { @class = "form-control", placeholder = "E-posta", @style = "margin:auto" , type = "email" , required = "required"} })
+            <br />
+            @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control", placeholder = "Şifre", @style = "margin:auto", type = "password", required = "required" } })
+
+            <br />
+            <button type="submit" class="btn btn-success" style="letter-spacing:1px;">&emsp;Giriş&emsp;</button>
+        }
+
+        <br />
+        <br />
+    </div>
+</div>
+
